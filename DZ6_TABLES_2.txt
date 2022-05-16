@@ -1,0 +1,48 @@
+CREATE TABLE CUSTOMERS
+        (
+                ID   NUMBER(4)            ,
+                NAME VARCHAR2(30) NOT NULL,
+                PRIMARY KEY(ID)
+        )
+;
+
+CREATE TABLE EMPLOEES
+        (
+                ID       NUMBER(4)            ,
+                NAME     VARCHAR2(30) NOT NULL,
+                CATEGORY VARCHAR2(30) NOT NULL,
+                PRIMARY KEY(ID)
+        )
+;
+
+CREATE TABLE CHECKS
+        (
+                ID          NUMBER(4)                          ,
+                ID_EMPLOEE  NUMBER(4)                          ,
+                ID_CUSTOMER NUMBER(4)                          ,
+                CHDATE      DATE                               ,
+                AMOUNT      NUMBER(10)                         ,
+                PRIMARY KEY(ID)                                ,
+                FOREIGN KEY(ID_EMPLOEE) REFERENCES EMPLOEES(ID),
+                FOREIGN KEY(ID_CUSTOMER) REFERENCES CUSTOMERS(ID)
+        )
+;
+
+CREATE TABLE PRODUCTS
+        (
+                ID    NUMBER(4)   ,
+                NAME  VARCHAR2(10),
+                PRICE NUMBER(10)  ,
+                PRIMARY KEY(ID)
+        )
+;
+
+CREATE TABLE PRODUCT_CHECK
+        (
+                ID_CHECK   NUMBER(4)                       ,
+                ID_PRODUCT NUMBER(4)                       ,
+                PCHNUMBER  NUMBER(10)                      ,
+                FOREIGN KEY(ID_CHECK) REFERENCES CHECKS(ID),
+                FOREIGN KEY(ID_PRODUCT) REFERENCES PRODUCTS(ID)
+        )
+;
